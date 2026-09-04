@@ -14,9 +14,9 @@ jobs:
         run: docker build -t hello-flask .
        
       - name: Tag docker image  
-        run: docker tag hello-flask-cd libaano/hello-flask-cd:latest
+        run: docker tag hello-flask libaano/hello-flask-cd:latest
       
-      - name: Push docker image to docker desktop
+      - name: Push docker image to docker hub
         run: docker push libaano/hello-flask-cd:latest
 
     
