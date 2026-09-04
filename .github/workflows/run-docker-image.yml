@@ -16,6 +16,12 @@ jobs:
       - name: Run the app container
         run: docker run -d -p 5000:5000 hello-flask
 
+      - name: Wait for app to start
+        run: sleep 3
+
+      - name: Show container logs
+        run: docker logs $(docker ps -q --latest)
+
       - name: Curl the app
         run: curl http://localhost:5000
 
