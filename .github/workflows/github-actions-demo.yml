@@ -6,14 +6,21 @@ on:
 jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.9", "3.10", "3.11"]
     steps:
       - name: Check out repository code
         uses: actions/checkout@v6
 
-      - name: Install nginx
-        run: |
-          sudo apt update
-          sudo apt install -y nginx
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          
+      - name: Set up Python ${{ matrix.python-version }}
+        run: pip install pytest
+
 
 
       # checkout, build, test, deploy
