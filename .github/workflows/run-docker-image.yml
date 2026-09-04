@@ -10,6 +10,9 @@ jobs:
       - name: Check out repository code
         uses: actions/checkout@v6
 
+      - name: Log into Docker Hub
+        run: docker run -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_TOKEN }}
+
       - name: Build the image
         run: docker build -t hello-flask .
        
