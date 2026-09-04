@@ -12,17 +12,11 @@ jobs:
 
       - name: Build the image
         run: docker build -t hello-flask .
-
-      - name: Run the app container
-        run: docker run -d -p 5000:5000 hello-flask
-
-      - name: Wait for app to start
-        run: sleep 3
-
-      - name: Show container logs
-        run: docker logs $(docker ps -q --latest)
-
-      - name: Curl the app
-        run: curl http://localhost:5000
+       
+      - name: Tag docker image  
+        run: docker tag hello-flask-cd libaano/hello-flask-cd:latest
+      
+      - name: Push docker image to docker desktop
+        run: docker push libaano/hello-flask-cd:latest
 
     
