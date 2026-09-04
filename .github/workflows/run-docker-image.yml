@@ -1,0 +1,22 @@
+name: Run Docker Image using GitHub Actions
+run-name: ${{ github.actor }} is attempting to run the docker image.
+on: 
+    workflow_dispatch:
+    push:
+jobs:
+  Explore-GitHub-Actions:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v6
+
+      - name: Build the image
+        run: docker build -t hello-flask .
+
+      - name: Run the app container
+        run: docker run -d -p 5000:5000 hello-flask
+
+      - name: Curl the app
+        run: curl http://localhost:5000
+
+    
